@@ -1,6 +1,6 @@
 Package: flybaseconvert
 Title: Convert non-systematic gene names to FlyBase IDs
-Version: 0.0.3
+Version: 0.0.4
 Authors@R: 
     person(given = "Tom",
            family = "Harrop",

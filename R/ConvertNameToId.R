@@ -20,7 +20,7 @@ ConvertNameToId <- function(gene_name) {
         warning(print(id_match))
         return(NA)
     }
-    if(!is.na(id_match) & dim(id_match)[[1]] == 1) {
+    if(!is.na(id_match) && length(id_match) == 1) {
         return(id_match)
     }
     alias_match <- id_to_alias[alias == gene_name]
