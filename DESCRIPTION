@@ -1,0 +1,17 @@
+Package: flybaseconvert
+Title: Convert non-systematic gene names to FlyBase IDs
+Version: 0.0.1
+Authors@R: 
+    person(given = "Tom",
+           family = "Harrop",
+           role = c("aut", "cre"),
+           email = "twharrop@gmail.com")
+Description: Convert non-systematic gene names to FlyBase IDs
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Imports:
+    data.table (>= 1.12.0)
+Depends:
+    R (>= 3.5.2)
