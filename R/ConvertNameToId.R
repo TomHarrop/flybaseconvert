@@ -14,24 +14,37 @@
 
 
 ConvertNameToId <- function(gene_name) {
+    if(length(gene_name) != 1) {
+        stop(
+            paste('ConvertNameToId expects a single non-systematic gene name.',
+                  '  If you\'re using data.table, try with `by=`',
+                  '  or check for duplicate rows.',
+                  sep = '\n'))
+    }
+    
+    # exact ID matches
     id_match <- id_to_name[gene_name, ID]
     if(!is.na(id_match) && length(id_match) == 1) {
         return(id_match)
     }
     if(length(id_match) > 1) {
-        warning(paste0("Multiple matches found for ", gene_name))
-        warning(print(id_match))
-        return(NA)
+        warning(paste0("Multiple ID matches found for ", gene_name))
+        warning(paste(id_match, collapse = ", "))
+        return(as.character(NA))
     }
-    alias_match <- id_to_alias[alias == gene_name]
-    if(dim(alias_match)[[1]] == 1) {
-        return(alias_match[, ID])
+    
+    # Alias matches
+    alias_match <- id_to_alias[alias == gene_name, ID]
+    if(!is.na(alias_match) && length(alias_match) == 1) {
+        return(alias_match)
     }
-    if(dim(alias_match)[[1]] > 1) {
-        warning(paste0("Multiple matches found for ", gene_name))
-        warning(print(alias_match))
-        return(NA)
+    if(length(alias_match) > 1) {
+        warning(paste0("Multiple alias matches found for ", gene_name))
+        warning(paste(alias_match, collapse = ", "))
+        return(as.character(NA))
     }
+
+    # no matches
     warning(paste0("No match found for ", gene_name))
-    return(NA)
+    return(as.character(NA))
 }
